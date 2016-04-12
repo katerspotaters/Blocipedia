@@ -9,25 +9,56 @@
         1,
         null
       ],
-      "/Users/katie/bloc/blocipedia/app/mailers/favorite_mailer.rb": [
-        1,
-        1,
-        null
-      ],
-      "/Users/katie/bloc/blocipedia/app/mailers/application_mailer.rb": [
-        1,
-        1,
+      "/Users/katie/bloc/blocipedia/app/helpers/wiki_helper.rb": [
         1,
         null
       ],
-      "/Users/katie/bloc/blocipedia/spec/models/user_spec.rb": [
+      "/Users/katie/bloc/blocipedia/app/controllers/wiki_controller.rb": [
+        1,
         1,
         null,
+        1,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null
+      ],
+      "/Users/katie/bloc/blocipedia/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        null
+      ],
+      "/Users/katie/bloc/blocipedia/app/models/wiki.rb": [
         1,
         1,
         null
       ]
     },
-    "timestamp": 1460419213
+    "timestamp": 1460483189
   }
 }

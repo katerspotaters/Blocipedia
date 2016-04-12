@@ -1,0 +1,14 @@
+<%= content_tag :div, class: 'media', id: "wiki-#{wiki.id}" do %>
+   <div class="media-body">
+    <h4>
+     <%= link_to wiki.title, wiki_path(wiki) %>
+    </h4>
+    <p class="media-heading">
+      <%= wiki.body %>
+    </p>
+    <small>
+      created <%= time_ago_in_words(wiki.created_at) %> ago
+          | <%= link_to "Delete", [wiki], method: :delete %>
+    </small>
+  </div>
+<% end %>
