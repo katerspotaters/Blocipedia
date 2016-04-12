@@ -1,9 +1,9 @@
 class WikisController < ApplicationController
-  include WikisHelper
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  #include WikisHelper
+  #rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def index
-    @wikis = policy_scope(Wiki.all)
+    @wikis = Wiki.all
   end
 
   def show
@@ -40,18 +40,20 @@ class WikisController < ApplicationController
   end
 
   def new
-    @user = User.find(params[:user_id])
-    @wiki = Wiki.new
+    @user = current_user
+    @wiki = @user.wikis.new
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @wiki = @user.wikis.build(wiki_params)
-    authorize @wiki if @wiki.private == true
+    @wiki = Wiki.new
+    #Devise has a special method called current_user that you can use to get the current signed in user!
+    @wiki = current_user.wikis.build(wiki_params)
+
     if @wiki.save
-      redirect_to [@user,@wiki] , notice: "Wiki created"
+      flash[:notice] = "Wiki was saved successfully."
+      redirect_to @wiki
     else
-      flash[:alert] = "There was a problem creating the wiki. Please try again."
+      flash.now[:alert] = "There was an error saving your wiki. Please try again."
       render :new
     end
   end
