@@ -29,10 +29,9 @@ class WikisController < ApplicationController
 
   def destroy
     @wiki = Wiki.find(params[:id])
-    authorize @wiki
 
     if @wiki.destroy
-      redirect_to user_wikis_path, notice: "Wiki deleted"
+      redirect_to @wiki, notice: "Wiki deleted"
     else
       flash[:alert] = "Unable to delete wiki. Try again."
       render :show
@@ -40,23 +39,20 @@ class WikisController < ApplicationController
   end
 
   def new
-    @user = current_user
-    @wiki = @user.wikis.new
+    @wiki = Wiki.new
   end
 
   def create
-    @wiki = Wiki.new
-    #Devise has a special method called current_user that you can use to get the current signed in user!
-    @wiki = current_user.wikis.build(wiki_params)
+      @wiki = Wiki.new(wiki_params)
 
-    if @wiki.save
-      flash[:notice] = "Wiki was saved successfully."
-      redirect_to @wiki
-    else
-      flash.now[:alert] = "There was an error saving your wiki. Please try again."
-      render :new
+      if @wiki.save
+        flash[:notice] = "Wiki was saved."
+        redirect_to @wiki
+      else
+        flash.new[:alert] = "There was an error saving the post. Please try again."
+        render :new
+      end
     end
-  end
 
   private
 
