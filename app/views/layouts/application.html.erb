@@ -12,6 +12,7 @@
   <ul class="nav nav-tabs">
      <%= link_to "Home", root_path %>
      <%= link_to "About", about_path %>
+     <%= link_to "Wikis", wikis_path %>
      <ul class="nav navbar-nav navbar-right">
          <% if user_signed_in? %>
            <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %></li>
