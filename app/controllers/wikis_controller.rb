@@ -17,15 +17,14 @@ class WikisController < ApplicationController
   def update
     @wiki = Wiki.find(params[:id])
     authorize @wiki
-
-    if @wiki.update_attributes(wiki_params)
-      @wiki.collaborators = Collaborator.update_collaborators(@wiki, params[:wiki][:collaborators]) if collab_authorized?(@wiki)
-      redirect_to [@wiki.user, @wiki], notice: "Wiki updated"
-    else
-      flash[:alert] = "Unable to update wiki. Please try again."
-      render :edit
-    end
-  end
+         if @wiki.update_attributes(wiki_params)
+           flash[:notice] = "Updated the wiki."
+           redirect_to @wiki
+         else
+           flash[:error] = "Could not update wiki. Please try again."
+           render :edit
+         end
+       end
 
   def destroy
     @wiki = Wiki.find(params[:id])
