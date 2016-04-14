@@ -1,6 +1,6 @@
 class WikisController < ApplicationController
   #include WikisHelper
-  #rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def index
     @wikis = Wiki.all
@@ -17,14 +17,14 @@ class WikisController < ApplicationController
   def update
     @wiki = Wiki.find(params[:id])
     authorize @wiki
-         if @wiki.update_attributes(wiki_params)
-           flash[:notice] = "Updated the wiki."
-           redirect_to @wiki
-         else
-           flash[:error] = "Could not update wiki. Please try again."
-           render :edit
-         end
-       end
+    if @wiki.update_attributes(wiki_params)
+      flash[:notice] = "Updated the wiki."
+      redirect_to @wiki
+    else
+      flash[:error] = "Could not update wiki. Please try again."
+      render :edit
+    end
+  end
 
   def destroy
     @wiki = Wiki.find(params[:id])
@@ -42,16 +42,16 @@ class WikisController < ApplicationController
   end
 
   def create
-      @wiki = Wiki.new(wiki_params)
+    @wiki = Wiki.new(wiki_params)
 
-      if @wiki.save
-        flash[:notice] = "Wiki was saved."
-        redirect_to @wiki
-      else
-        flash.new[:alert] = "There was an error saving the post. Please try again."
-        render :new
-      end
+    if @wiki.save
+      flash[:notice] = "Wiki was saved."
+      redirect_to @wiki
+    else
+      flash.new[:alert] = "There was an error saving the post. Please try again."
+      render :new
     end
+  end
 
   private
 
