@@ -30,6 +30,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'figaro', '1.0'
 gem 'devise'
 gem 'bootstrap-sass'
+gem 'bootswatch-rails'
 
 group :production do
   gem 'rails_12factor'
