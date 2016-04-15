@@ -1,5 +1,14 @@
 <h1>All Wikis</h1>
 
+<%= link_to "New Wiki", new_wiki_path, class: 'btn btn-success' %>
+
 <% @wikis.each do |wiki| %>
-  <p><%= link_to wiki.title, wiki %></p>
+  <div class="media">
+    <div class="media-body">
+      <h4 class="media-heading">
+        <%= link_to wiki.title, wiki %>
+      </h4>
+    </div>
+  </div>
+
 <% end %>

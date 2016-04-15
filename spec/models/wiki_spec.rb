@@ -10,5 +10,22 @@ require 'rails_helper'
 #     end
 #   end
 # end
-RSpec.describe WikiHelper, type: :helper do
+RSpec.describe Wiki, type: :model do
+  let(:wiki) { Wiki.create!(title: "New Wiki Title", body: "New Wiki Body") }
+
+   describe "attributes" do
+     it "has title and body attributes" do
+       expect(wiki).to have_attributes(title: "New Wiki Title", body: "New Wiki Body")
+     end
+   end
+
+  describe User do
+    before(:each) { @user = User.new(email: 'user@example.com') }
+    subject { @user }
+    it { should respond_to(:email) }
+    it "#email returns a string" do
+      expect(@user.email).to match 'user@example.com'
+    end
+
+  end
 end

@@ -1,6 +1,10 @@
 source 'https://rubygems.org'
 
+gem 'rolify'
 
+gem 'pundit'
+
+gem 'bcrypt'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use sqlite3 as the database for Active Record
@@ -26,6 +30,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'figaro', '1.0'
 gem 'devise'
 gem 'bootstrap-sass'
+gem 'bootswatch-rails'
 
 group :production do
   gem 'rails_12factor'
