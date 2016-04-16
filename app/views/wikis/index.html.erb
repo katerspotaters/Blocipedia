@@ -1,14 +1,15 @@
-<h1>All Wikis</h1>
+<div class="row">
+<h1>All Wikis <% if policy(Wiki.new).create? %><%= link_to "New Wiki", new_wiki_path, class: 'btn btn-success' %>
+<% end %> </h1>
+</div>
 
-<%= link_to "New Wiki", new_wiki_path, class: 'btn btn-success' %>
-
+<table class ="table">
 <% @wikis.each do |wiki| %>
-  <div class="media">
-    <div class="media-body">
-      <h4 class="media-heading">
-        <%= link_to wiki.title, wiki %>
-      </h4>
-    </div>
-  </div>
+<tr>
+       <td><p class "media-heading"><%= link_to wiki.title, wiki %></p></td>
+       <td><%= link_to "Edit", edit_wiki_path(wiki), class: "btn btn-success" %></td>
+       <td><%= link_to "Delete", wiki, method: :delete, class: "btn btn-danger" %></td>
+   </tr>
 
 <% end %>
+</table>

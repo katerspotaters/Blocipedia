@@ -20,6 +20,20 @@
   <%= f.label :private, class: 'checkbox' do %>
       <%= f.check_box :private %> Private Wiki
     <% end %>
+
+    <% if current_user.premium? %>
+     <div class="form-group">
+       <%= f.label :private, class: 'checkbox' do %>
+         <%= f.check_box :private %> Public topic
+       <% end %>
+     </div>
+   <% else %>
+     <div class="form-group">
+       Want to create a private wiki?
+       <%= link_to "Upgrade to Premium", new_charge_path, class: 'btn btn-primary' %>
+     </div>
+   <% end %>
+
   <div class="form-group">
     <%= f.submit "Save", class: 'btn btn-success' %>
   </div>

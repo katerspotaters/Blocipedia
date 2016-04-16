@@ -6,6 +6,27 @@
   <body>
     <h1>Welcome to Blocipedia!</h1>
       <p>Blocipedia is a project that mimics wikipedia for learning purposes.</p>
+      <p>Create and share markdown wikis!</p>
+    <p>
+     <% if current_user %>
+       <p>Welcome back <%= current_user%>!</p>
+
+      <%= link_to "Create Wiki", new_wiki_path, class: 'btn btn-primary' %>
+
+    <% else %>
+        <%= link_to "Sign In", new_user_session_path, class: 'btn btn-primary' %> or
+        <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary' %> today!
+    <% end %>
+    </p>
+    <% if current_user && current_user.premium? %>
+
+      <%= form_for current_user do |f| %>
+        <%= f.submit "Downgrade Account", data: { confirm: "Downgrade account to free status?" } %>
+        <%= f.hidden_field :role, :value => 'standard'%>
+      <% end %>
+
+    <% end %>
+
       <div>
         <p> @copyright Katelyn Hertel 2016 </p>
       </div>

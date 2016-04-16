@@ -8,6 +8,7 @@ class WikiPolicy
 
   def show?
     true
+    wiki.private? == false
   end
 
   def new?
@@ -27,7 +28,16 @@ class WikiPolicy
   end
 
   def destroy?
-    user == wiki.user
+    user.present? && (wiki.user == user || user.admin? )
   end
 
+  class Scope < Scope
+      def resolve
+      if user.admin? || user.moderator?
+          scope.all
+    else
+      scope.where(:user_id => user.id)
+     end
+   end
+end
 end

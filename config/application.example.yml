@@ -1,0 +1,4 @@
+sendgrid_password: password
+sendgrid username: username
+stripe_publishable_key: key
+stripe_secret_key: key

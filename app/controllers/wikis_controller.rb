@@ -1,6 +1,12 @@
 class WikisController < ApplicationController
   #include WikisHelper
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  attr_reader :user, :wiki
+
+  def initialize(user, wiki)
+    @user = user
+    @wiki = wiki
+  end
 
   def index
     @wikis = Wiki.all
@@ -15,6 +21,7 @@ class WikisController < ApplicationController
   end
 
   def update
+    (user.present && wiki.user == user)
     @wiki = Wiki.find(params[:id])
     authorize @wiki
     if @wiki.update_attributes(wiki_params)
@@ -42,8 +49,9 @@ class WikisController < ApplicationController
   end
 
   def create
-    @wiki = Wiki.new(wiki_params)
-
+    user.present? && current_user == user
+    @wiki = current_user.wikis.build(wiki_params)
+    authorize @wiki
     if @wiki.save
       flash[:notice] = "Wiki was saved."
       redirect_to @wiki
