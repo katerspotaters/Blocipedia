@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :user do
-    encrypted_password { Faker::Internet.password(10, 20) }
-    email "123@abc.com"
-    password "helloworld"
+    email Faker::Internet.email
+    password "password"
+    password_confirmation "password"
   end
 end

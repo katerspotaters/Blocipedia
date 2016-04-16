@@ -1,4 +1,5 @@
 SimpleCov.start
+require 'pundit/matchers'
 require 'factory_girl_rails'
 require 'devise'
 require 'simplecov'

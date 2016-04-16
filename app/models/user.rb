@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
      end
 
      def downgrade_account
-       self.update_attribute(:role, 'standard')
+       self.remove_role :premium
      end
 
      private
