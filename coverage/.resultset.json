@@ -1,10 +1,11 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/katie/bloc/blocipedia/app/controllers/charges_controller.rb": [
+      "/Users/brittanymartin/projects/katerspotaters/Blocipedia/app/controllers/charges_controller.rb": [
         1,
         1,
         1,
+        null,
         null,
         1,
         0,
@@ -16,26 +17,21 @@
         null,
         null,
         1,
-        null,
-        null,
-        2,
-        null,
+        1,
         null,
         null,
         null,
         null,
-        2,
+        1,
         null,
         null,
         null,
         null,
         null,
         null,
-        2,
-        2,
-        null,
-        null,
-        null,
+        1,
+        1,
+        1,
         null,
         null,
         0,
@@ -44,14 +40,16 @@
         null,
         1,
         2,
-        2,
+        1,
+        1,
+        null,
         null,
         null,
         null,
         null,
         null
       ],
-      "/Users/katie/bloc/blocipedia/app/controllers/application_controller.rb": [
+      "/Users/brittanymartin/projects/katerspotaters/Blocipedia/app/controllers/application_controller.rb": [
         1,
         1,
         null,
@@ -59,7 +57,7 @@
         1,
         null
       ],
-      "/Users/katie/bloc/blocipedia/spec/controllers/wiki_controller_spec.rb": [
+      "/Users/brittanymartin/projects/katerspotaters/Blocipedia/spec/controllers/wiki_controller_spec.rb": [
         1,
         null,
         1,
@@ -178,7 +176,7 @@
         null,
         null
       ],
-      "/Users/katie/bloc/blocipedia/app/controllers/wikis_controller.rb": [
+      "/Users/brittanymartin/projects/katerspotaters/Blocipedia/app/controllers/wikis_controller.rb": [
         1,
         null,
         1,
@@ -245,30 +243,30 @@
         null,
         null
       ],
-      "/Users/katie/bloc/blocipedia/spec/mailers/favorite_mailer_spec.rb": [
+      "/Users/brittanymartin/projects/katerspotaters/Blocipedia/spec/mailers/favorite_mailer_spec.rb": [
         1,
         null,
         1,
         null
       ],
-      "/Users/katie/bloc/blocipedia/app/mailers/favorite_mailer.rb": [
+      "/Users/brittanymartin/projects/katerspotaters/Blocipedia/app/mailers/favorite_mailer.rb": [
         1,
         1,
         null
       ],
-      "/Users/katie/bloc/blocipedia/app/mailers/application_mailer.rb": [
+      "/Users/brittanymartin/projects/katerspotaters/Blocipedia/app/mailers/application_mailer.rb": [
         1,
         1,
         1,
         null
       ],
-      "/Users/katie/bloc/blocipedia/spec/models/role_spec.rb": [
+      "/Users/brittanymartin/projects/katerspotaters/Blocipedia/spec/models/role_spec.rb": [
         1,
         null,
         1,
         null
       ],
-      "/Users/katie/bloc/blocipedia/app/models/role.rb": [
+      "/Users/brittanymartin/projects/katerspotaters/Blocipedia/app/models/role.rb": [
         1,
         1,
         null,
@@ -282,7 +280,7 @@
         1,
         null
       ],
-      "/Users/katie/bloc/blocipedia/spec/models/user_spec.rb": [
+      "/Users/brittanymartin/projects/katerspotaters/Blocipedia/spec/models/user_spec.rb": [
         1,
         null,
         1,
@@ -316,7 +314,7 @@
         null,
         null
       ],
-      "/Users/katie/bloc/blocipedia/spec/models/wiki_spec.rb": [
+      "/Users/brittanymartin/projects/katerspotaters/Blocipedia/spec/models/wiki_spec.rb": [
         1,
         null,
         null,
@@ -349,15 +347,15 @@
         null,
         null
       ],
-      "/Users/katie/bloc/blocipedia/app/models/wiki.rb": [
+      "/Users/brittanymartin/projects/katerspotaters/Blocipedia/app/models/wiki.rb": [
         1,
         1,
         null
       ],
-      "/Users/katie/bloc/blocipedia/spec/policies/wiki_policy_spec.rb": [
+      "/Users/brittanymartin/projects/katerspotaters/Blocipedia/spec/policies/wiki_policy_spec.rb": [
 
       ]
     },
-    "timestamp": 1460912551
+    "timestamp": 1460923007
   }
 }
