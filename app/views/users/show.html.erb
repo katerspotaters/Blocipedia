@@ -1,1 +1,40 @@
+<% if @user == current_user %>
+<h1>My Wikis</h1>
+<% else %>
+<h1> <%= @user.email %></h1>
+<% end %>
 
+<div class = "tall teal scrollable container">
+
+<% @user.wikis.each do |wiki| %>
+
+<div class = 'row'>
+
+  <div class="col-md-2">
+    <%= link_to wiki.title, wiki %>
+  </div>
+
+  <div class="col-md-2">
+    <% if policy(wiki).edit? %>
+    <%= link_to "Edit", edit_wiki_path(wiki) %>
+    <% end %>
+  </div>
+
+  <div class="col-md-2">
+    <% if policy(wiki).destroy? %>
+    <%= link_to "Delete", wiki, method: :delete %>
+    <% end %>
+  </div>
+
+  </div>
+
+<% end %>
+
+</div>
+
+ <div class="col-md-2 col-md-offset-5">
+  <% if @user == current_user %>
+    <%= button_to "New Wiki", new_wiki_path, :class => "green-btn centered-text move-to-center",
+        :method => :get %>
+  <% end %>
+</div>

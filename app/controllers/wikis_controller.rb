@@ -16,7 +16,6 @@ class WikisController < ApplicationController
 
   def update
     @wiki = Wiki.find(params[:id])
-    authorize @wiki
     if @wiki.update_attributes(wiki_params)
       flash[:notice] = "Updated the wiki."
       redirect_to @wiki
@@ -43,7 +42,6 @@ class WikisController < ApplicationController
 
   def create
     @wiki = current_user.wikis.build(wiki_params)
-    authorize @wiki
     if @wiki.save
       flash[:notice] = "Wiki was saved."
       redirect_to @wiki

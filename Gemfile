@@ -32,6 +32,7 @@ gem 'devise'
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'
 gem 'stripe'
+gem 'stripe-ruby-mock'
 
 group :production do
   gem 'rails_12factor'
