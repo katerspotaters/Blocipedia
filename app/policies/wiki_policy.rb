@@ -24,7 +24,7 @@ class WikiPolicy
   end
 
   def update?
-    (user.present? && wiki.user == user)
+    user.present?
   end
 
   def destroy?
