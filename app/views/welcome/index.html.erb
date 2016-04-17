@@ -9,23 +9,27 @@
       <p>Create and share markdown wikis!</p>
     <p>
      <% if current_user %>
-       <p>Welcome back <%= current_user%>!</p>
-
+       <p>Welcome back!</p>
       <%= link_to "Create Wiki", new_wiki_path, class: 'btn btn-primary' %>
-
     <% else %>
         <%= link_to "Sign In", new_user_session_path, class: 'btn btn-primary' %> or
         <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary' %> today!
     <% end %>
     </p>
-    <% if current_user && current_user.premium? %>
 
-      <%= form_for current_user do |f| %>
-        <%= f.submit "Downgrade Account", data: { confirm: "Downgrade account to free status?" } %>
-        <%= f.hidden_field :role, :value => 'standard'%>
+    <div>
+
+    <% if current_user %>
+      <% if current_user.has_role? :premium %>
+    <h5>Thanks for being a premium user!</p>
+        <%= link_to "Downgrade", downgrade_user_path, method: :post, class: "btn btn-danger center-block", data: {confirm: "Are you sure you want to downgrade your account?"} %>
+      <% else %>
+        <%= link_to "Upgrade to Premium Today!", new_charge_path, class: "btn btn-success" %>
+        </div>
       <% end %>
-
-    <% end %>
+      <% end %>
+    </div>
+  </div>
 
       <div>
         <p> @copyright Katelyn Hertel 2016 </p>
