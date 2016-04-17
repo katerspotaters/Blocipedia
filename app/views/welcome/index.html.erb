@@ -18,16 +18,14 @@
     </p>
 
     <div>
-
     <% if current_user %>
       <% if current_user.has_role? :premium %>
-    <h5>Thanks for being a premium user!</p>
+        <h5>Thanks for being a premium user!</p>
         <%= link_to "Downgrade", downgrade_user_path, method: :post, class: "btn btn-danger center-block", data: {confirm: "Are you sure you want to downgrade your account?"} %>
       <% else %>
         <%= link_to "Upgrade to Premium Today!", new_charge_path, class: "btn btn-success" %>
-        </div>
       <% end %>
-      <% end %>
+    <% end %>
     </div>
   </div>
 

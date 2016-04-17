@@ -25,7 +25,7 @@ class ChargesController < ApplicationController
        currency: 'usd'
      )
 
-     user.add_role :premium
+     current_user.add_role :premium
      flash[:notice] = "Thank you for your payment, #{current_user.email}!"
      redirect_to root_url
 
