@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   resources :wikis
   resources :charges, only: [:new, :create]
-  resources :users
 
   devise_for :users
   get 'about' => 'welcome#about'
