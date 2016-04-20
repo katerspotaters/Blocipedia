@@ -12,8 +12,4 @@ class Wiki < ActiveRecord::Base
     self.private == false
   end
 
-  def public?
-    self.private == false
-  end
-
 end
