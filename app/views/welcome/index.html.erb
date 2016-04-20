@@ -16,9 +16,15 @@
         <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary' %> today!
     <% end %>
     </p>
-
-    <% if current_user.premium %>
-      <%= link_to "Downgrade", downgrade_user_path, method: :post, class: "btn btn-danger center-block", data: {confirm: "Are you sure you want to downgrade your account? All your private wikis will be made public!"} %>
+    <% if current_user %>
+    <% if current_user.standard? %>
+      <%= link_to "Upgrade to Premium now!", new_charge_path, class: "btn btn-success" %>
+      <% end %>
+      <% end %>
+    <% if current_user %>
+    <% if current_user.premium? %>
+      <%= link_to "Downgrade", cancel_user_registration_path, method: :post, class: "btn btn-danger center-block", data: {confirm: "Are you sure you want to downgrade your account? All your private wikis will be made public!"} %>
+    <% end %>
     <% end %>
 
       <div>
