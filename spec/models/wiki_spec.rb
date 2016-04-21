@@ -9,6 +9,7 @@ require 'rails_helper'
 #       expect(helper.concat_strings("this","that")).to eq("this that")
 #     end
 #   end
+
 # end
 RSpec.describe Wiki, type: :model do
   let(:wiki) { Wiki.create!(title: "New Wiki Title", body: "New Wiki Body") }
@@ -26,6 +27,24 @@ RSpec.describe Wiki, type: :model do
     it "#email returns a string" do
       expect(@user.email).to match 'user@example.com'
     end
-
   end
-end
+
+
+  describe "scopes" do
+       before do
+         @public_wiki = Wiki.create!(name: Faker::Hipster.sentence, description: Faker::Lorem.paragraph)
+         @private_wiki = Wiki.create!(name: Faker::Hipster.sentence, description: Faker::Lorem.paragraph, public: false)
+       end
+
+       describe "visible_to(user)" do
+         it "returns all wikis if the user is present" do
+           user = User.new
+           expect(Wiki.visible_to(user)).to eq(Wiki.all)
+         end
+
+         it "returns only public wiki if user is nil" do
+           expect(Wiki.visible_to(nil)).to eq([@public_wiki])
+         end
+       end
+     end
+  end

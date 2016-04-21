@@ -26,9 +26,8 @@ class ChargesController < ApplicationController
        description: "Blocipedia Premium Account - #{current_user.email}",
        currency: 'usd'
      )
-
-     flash[:success] = "Thank you for your payment, #{current_user.email}!"
-     redirect_to new_charge_path # or wherever
+     flash[:notice] = "Thank you for your payment, #{current_user.email}!"
+     redirect_to root_url # or wherever
 
    # Stripe will send back CardErrors, with friendly messages
    # when something goes wrong.

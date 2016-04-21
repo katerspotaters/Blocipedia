@@ -15,15 +15,11 @@
   </div>
 
   <div class="col-md-2">
-    <% if policy(wiki).edit? %>
     <%= link_to "Edit", edit_wiki_path(wiki) %>
-    <% end %>
   </div>
 
   <div class="col-md-2">
-    <% if policy(wiki).destroy? %>
     <%= link_to "Delete", wiki, method: :delete %>
-    <% end %>
   </div>
 
   </div>

@@ -24,14 +24,14 @@ class User < ActiveRecord::Base
        self.has_role? :admin
      end
 
-     def downgrade_account
+     def downgrade
        self.remove_role :premium
      end
 
      private
 
      def make_standard
-       self.role = 'standard'
+       self.add_role = 'standard'
      end
 
 end
