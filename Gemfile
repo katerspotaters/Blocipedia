@@ -37,7 +37,7 @@ gem 'stripe-ruby-mock'
 
 group :production do
   gem 'rails_12factor'
-  gem 'pg'
+  #gem 'pg'
 end
 
 group :development, :test do
