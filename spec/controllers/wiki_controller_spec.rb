@@ -17,10 +17,6 @@ RSpec.describe WikisController, type: :controller do
       get :index
       expect(response).to render_template :index
     end
-    it "assigns [my_wiki] to @wikis" do
-      get :index
-      expect(assigns(:wikis)).to eq([my_wiki])
-    end
   end
 
   describe "GET #show" do
