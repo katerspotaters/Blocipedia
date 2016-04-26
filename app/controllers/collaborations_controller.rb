@@ -12,7 +12,12 @@ class CollaborationsController < ApplicationController
   end
 
   def create
+    wiki = Wiki.find(params[:wiki])
+    email = params[:collaborations_email]
+    user = User.find_by(email: email)
     @collaboration = @wiki.collaborations.new( collaboration_params )
+
+    collaborator = wiki.collaborators.new(user: user)
 
      if @collaboration.save
        flash[:notice] = "Collaboration was saved."
@@ -25,9 +30,10 @@ class CollaborationsController < ApplicationController
 
   def destroy
     @collaboration = Collaboration.find(params[:id])
+    @wiki = @collaboration.wiki
 
     if @collaboration.destroy
-       flash[:notice] = " #{@collaboration.user.email} was successfully removed."
+       flash[:notice] = "#{@collaboration.user.email} was successfully removed."
        redirect_to @wiki
      else
        flash[:error] = "Error. Could not remove the collaboration."
