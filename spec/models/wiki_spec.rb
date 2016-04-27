@@ -13,6 +13,7 @@ require 'rails_helper'
 # end
 RSpec.describe Wiki, type: :model do
   let(:wiki) { Wiki.create!(title: "New Wiki Title", body: "New Wiki Body") }
+  let(:user) { User.create!(email: "test@example.com", password: "helloworld")}
 
    describe "attributes" do
      it "has title and body attributes" do
@@ -31,20 +32,24 @@ RSpec.describe Wiki, type: :model do
 
 
   describe "scopes" do
-       before do
-         @public_wiki = Wiki.create!(name: Faker::Hipster.sentence, description: Faker::Lorem.paragraph)
-         @private_wiki = Wiki.create!(name: Faker::Hipster.sentence, description: Faker::Lorem.paragraph, public: false)
-       end
+    let(:private_wiki) { Wiki.create!(title: "Private Wiki", body: "This is a private wiki.", private: true, user: user)}
+    let(:other_user) { User.create!(email: "other@example.com", password: "helloworld")}
+    let(:other_user_wiki) { Wiki.create!(title: "Someone else's private wiki", body: "Someone elses wiki.", private: true, user: other_user)}
 
-       describe "visible_to(user)" do
-         it "returns all wikis if the user is present" do
-           user = User.new
-           expect(Wiki.visible_to(user)).to eq(Wiki.all)
-         end
+    describe "visible_to(user)" do
+      it "returns all public wikis" do
+        expect(Wiki.visible_to(user)).to eq(Wiki.publicly_viewable)
+      end
 
-         it "returns only public wiki if user is nil" do
-           expect(Wiki.visible_to(nil)).to eq([@public_wiki])
-         end
+      it "doesnt return a private wiki" do
+        expect(Wiki.visible_to(user)).not_to include(private_wiki)
+      end
+
+      it "shows premium user all wikis" do
+        user.add_role :premium
+
+        expect(Wiki.visible_to(user)).to include(private_wiki)
+      end
        end
      end
   end
