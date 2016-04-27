@@ -8,7 +8,6 @@ class WikiPolicy
 
   def show?
     true
-    wiki.private? == false
   end
 
   def new?
@@ -28,20 +27,18 @@ class WikiPolicy
   end
 
   def destroy?
-    user.present? && (wiki.user == user || user.admin? )
+    user == wiki.user || user.admin?
   end
 
-  class Scope < Scope
-      def resolve
-      if user.admin? || user.moderator?
-          scope.all
+  def permitted_attributes
+    if user.admin? || user.premium?
+      [:title, :body, :private]
     else
-      scope.where(:user_id => user.id)
-     end
-   end
-end
+      [:title, :body]
+    end
+  end
 
-class Scope
+  class Scope
     attr_reader :user, :scope
 
     def initialize(user, scope)
@@ -51,25 +48,25 @@ class Scope
 
     def resolve
       wikis = []
-      if user.has_role == 'admin'
-        wikis = scope.all # if the user is an admin, show them all the wikis
-      elsif user.has_role == 'premium'
+      if user.admin?
+        wikis = scope.all
+      elsif user.premium?
         all_wikis = scope.all
         all_wikis.each do |wiki|
-          if wiki.public? || wiki.owner == user || wiki.collaborators.include?(user)
-            wikis << wiki # if the user is premium, only show them public wikis, or that private wikis they created, or private wikis they are a collaborator on
+          if !wiki.private || wiki.user == user || wiki.collaborators.include?(user)
+            wikis << wiki
           end
         end
-      else # this is the lowly standard user
+      else
         all_wikis = scope.all
         wikis = []
         all_wikis.each do |wiki|
-          if wiki.public? || wiki.collaborators.include?(user)
-            wikis << wiki # only show standard users public wikis and private wikis they are a collaborator on
+          if !wiki.private || wiki.collaborators.include?(user)
+            wikis << wiki
           end
         end
       end
-      wikis # return the wikis array we've built up
+      wikis
     end
   end
 end
